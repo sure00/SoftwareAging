@@ -1,0 +1,40 @@
+class Solution {
+public:
+    void reverse(string &s, int start, int end)
+    {
+        if(start == end)
+            return;
+        char tmp;
+        int i,j;
+        for(i=start,j=end; i<j;i++,j--){
+            tmp = s[i];
+            s[i]=s[j];
+            s[j]=tmp;
+        }
+    }
+    
+    void reverseWords(string &s) {
+        int i=0,j=0;
+        int wordcount=0,len=s.length();;
+        
+        while(true){
+            while(i < len && s[i]==' ')
+                i++;
+            if(i==len)
+                break;
+            
+            if(wordcount)
+                s[j++]=' ';
+            int l=j;
+            while(i<s.length() && s[i]!=' '){
+                s[j++]=s[i++];
+                
+            }
+            reverse(s, l, j-1);
+            wordcount++;
+        }
+        
+        s.resize(j);
+        reverse(s, 0, j-1);
+     }
+};
